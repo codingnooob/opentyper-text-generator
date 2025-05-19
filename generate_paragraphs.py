@@ -28,6 +28,8 @@ def generate_paragraphs(num_paragraphs, num_files):
             # Replace instances of ; ; and ? ? with ; and ?
             paragraph = re.sub(r';\s*;', ';', paragraph)
             paragraph = re.sub(r'\?\s*\?', '?', paragraph)
+            # Remove spaces between quotation marks and text
+            paragraph = re.sub(r'"\s*(.*?)\s*"', r'"\1"', paragraph)
             paragraph = tool.correct(paragraph)
             paragraphs.append(paragraph)
         file_name = f"paragraphs_{i+1}.txt"
