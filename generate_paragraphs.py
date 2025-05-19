@@ -1,7 +1,7 @@
 import nltk
 import random
 nltk.download('punkt')
-# from nltk.corpus import brown, download as nltk_download
+from nltk.corpus import brown
 
 # Ensure the Brown corpus is downloaded
 nltk.download('brown')
