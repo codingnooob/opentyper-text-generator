@@ -2,6 +2,7 @@ import nltk
 import random
 from nltk.tokenize import sent_tokenize, word_tokenize
 nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
 from nltk.corpus import brown
 
 # Ensure the Brown corpus is downloaded
