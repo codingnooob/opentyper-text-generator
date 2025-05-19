@@ -9,9 +9,11 @@ from nltk.corpus import brown
 # Ensure the Brown corpus is downloaded
 nltk.download('brown')
 import os
+import language_tool_python
 import re
 
 def generate_paragraphs(num_paragraphs, num_files):
+    tool = language_tool_python.LanguageTool('en-US')
     for i in range(num_files):
         paragraphs = []
         for _ in range(num_paragraphs):
@@ -23,6 +25,8 @@ def generate_paragraphs(num_paragraphs, num_files):
             paragraph = paragraph.replace('``', '"')
             # Remove double punctuation marks
             paragraph = re.sub(r'([?.!,])\s*\1+', r'\1', paragraph)
+            # Correct grammar and spelling
+            paragraph = tool.correct(paragraph)
             paragraphs.append(paragraph)
         file_name = f"paragraphs_{i+1}.txt"
         with open(file_name, 'w') as file:
