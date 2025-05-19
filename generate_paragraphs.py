@@ -1,9 +1,16 @@
-import lorem
+import nltk
+import random
+nltk.download('punkt')
+from nltk.corpus import brown
 import os
 
 def generate_paragraphs(num_paragraphs, num_files):
     for i in range(num_files):
-        paragraphs = [lorem.paragraph() for _ in range(num_paragraphs)]
+        paragraphs = []
+        for _ in range(num_paragraphs):
+            sentences = [ ' '.join(random.sample(brown.words(), 10)) for _ in range(5) ]
+            paragraph = ' '.join(sentences)
+            paragraphs.append(paragraph)
         file_name = f"paragraphs_{i+1}.txt"
         with open(file_name, 'w') as file:
             file.write("\n\n".join(paragraphs))
