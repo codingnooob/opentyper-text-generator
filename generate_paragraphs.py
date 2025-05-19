@@ -9,6 +9,7 @@ from nltk.corpus import brown
 # Ensure the Brown corpus is downloaded
 nltk.download('brown')
 import os
+import re
 
 def generate_paragraphs(num_paragraphs, num_files):
     for i in range(num_files):
@@ -16,6 +17,8 @@ def generate_paragraphs(num_paragraphs, num_files):
         for _ in range(num_paragraphs):
             sentences = [' '.join(sentence) for sentence in random.sample(list(brown.sents()), 5)]
             paragraph = ' '.join([' '.join(word_tokenize(sentence)) for sentence in sent_tokenize(' '.join(sentences))])
+            # Remove extra spaces around punctuation
+            paragraph = re.sub(r'\s([?.!,"](?:\s|$))', r'\1', paragraph)
             paragraphs.append(paragraph)
         file_name = f"paragraphs_{i+1}.txt"
         with open(file_name, 'w') as file:
