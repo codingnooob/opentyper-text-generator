@@ -1,10 +1,10 @@
 import nltk
 import random
 nltk.download('punkt')
-from nltk.corpus import brown, download as nltk_download
+# from nltk.corpus import brown, download as nltk_download
 
 # Ensure the Brown corpus is downloaded
-nltk_download('brown')
+nltk.download('brown')
 import os
 
 def generate_paragraphs(num_paragraphs, num_files):
