@@ -19,12 +19,6 @@ def generate_paragraphs(num_paragraphs, num_files):
         for _ in range(num_paragraphs):
             sentences = [' '.join(sentence) for sentence in random.sample(list(brown.sents()), 5)]
             paragraph = ' '.join([' '.join(word_tokenize(sentence)) for sentence in sent_tokenize(' '.join(sentences))])
-            # Remove extra spaces around punctuation
-            paragraph = re.sub(r'\s([?.!,"](?:\s|$))', r'\1', paragraph)
-            # Replace `` with "
-            paragraph = paragraph.replace('``', '"')
-            # Remove double punctuation marks
-            paragraph = re.sub(r'([?.!,])\s*\1+', r'\1', paragraph)
             # Correct grammar and spelling
             paragraph = tool.correct(paragraph)
             paragraphs.append(paragraph)
