@@ -11,7 +11,7 @@ def generate_paragraphs(num_paragraphs, num_files):
     for i in range(num_files):
         paragraphs = []
         for _ in range(num_paragraphs):
-            sentences = [ ' '.join(random.sample(list(brown.words()), 10)) for _ in range(5) ]
+            sentences = [' '.join(sentence) for sentence in random.sample(list(brown.sents()), 5)]
             paragraph = ' '.join(sentences)
             paragraphs.append(paragraph)
         file_name = f"paragraphs_{i+1}.txt"
