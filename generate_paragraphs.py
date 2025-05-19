@@ -19,6 +19,10 @@ def generate_paragraphs(num_paragraphs, num_files):
             paragraph = ' '.join([' '.join(word_tokenize(sentence)) for sentence in sent_tokenize(' '.join(sentences))])
             # Remove extra spaces around punctuation
             paragraph = re.sub(r'\s([?.!,"](?:\s|$))', r'\1', paragraph)
+            # Replace `` with "
+            paragraph = paragraph.replace('``', '"')
+            # Remove double punctuation marks
+            paragraph = re.sub(r'([?.!,])\s*\1+', r'\1', paragraph)
             paragraphs.append(paragraph)
         file_name = f"paragraphs_{i+1}.txt"
         with open(file_name, 'w') as file:
