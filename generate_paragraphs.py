@@ -1,5 +1,6 @@
 import nltk
 import random
+from nltk.tokenize import sent_tokenize, word_tokenize
 nltk.download('punkt')
 from nltk.corpus import brown
 
@@ -12,7 +13,7 @@ def generate_paragraphs(num_paragraphs, num_files):
         paragraphs = []
         for _ in range(num_paragraphs):
             sentences = [' '.join(sentence) for sentence in random.sample(list(brown.sents()), 5)]
-            paragraph = ' '.join(sentences)
+            paragraph = ' '.join([' '.join(word_tokenize(sentence)) for sentence in sent_tokenize(' '.join(sentences))])
             paragraphs.append(paragraph)
         file_name = f"paragraphs_{i+1}.txt"
         with open(file_name, 'w') as file:
