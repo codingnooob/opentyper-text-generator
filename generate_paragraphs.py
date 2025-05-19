@@ -25,6 +25,9 @@ def generate_paragraphs(num_paragraphs, num_files):
             paragraph = paragraph.replace('``', '"')
             # Remove double punctuation marks
             paragraph = re.sub(r'([?.!,])\s*\1+', r'\1', paragraph)
+            # Replace instances of ; ; and ? ? with ; and ?
+            paragraph = re.sub(r';\s*;', ';', paragraph)
+            paragraph = re.sub(r'\?\s*\?', '?', paragraph)
             paragraph = tool.correct(paragraph)
             paragraphs.append(paragraph)
         file_name = f"paragraphs_{i+1}.txt"
